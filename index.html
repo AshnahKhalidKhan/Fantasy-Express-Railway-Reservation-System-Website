@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Link CSS file-->
+        <link rel = "stylesheet" href = "Railway.css">
+
+        <!--Link JavaScript file-->
+        <script type = "text/javascript" src = "Railway.js"></script>
+
+        <!--Google Icons/Symbols Link-->
+        <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family = Material+Icons">
+
+        <!--Google Fonts Link For Navigation Bar-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet">
+
+        <!--Give webpage a favicon icon-->
+        <link rel = "icon" type = "image/x-icon" href = "Images/TrainGreen2.ico">
+
+        <!--CSS part-->
+        <style>
+            #NavigationBarTable:hover
+            {
+                font-size: 20px;
+            }
+        </style>
+        
+        <!--Give webpage a name-->
+        <title>Fantasy Express - Home</title>
+    </head>
+    <body style = "background-image: url('Images/Background.webp'); background-repeat: no-repeat; background-size:cover;">
+        <!--Navigation Bar-->
+        <div class = "NavigationBar" style = "padding-bottom: 3%;">
+            <table style = "margin-left: auto; margin-right: auto; table-layout: fixed; width: 60%; height: 120px; border-collapse: collapse;">
+                <tbody style = "background-image: url('Images/TrainNavigationBar2878140.png'); background-repeat: no-repeat; background-size: 100% 100%;">
+                    <tr style = "text-align: center; font-family: 'Mystery Quest', cursive; font-size: 16px; font-weight: 700; text-shadow: 1px 1px 0px #a78600; color: #FDC901;">
+                        <!-- <td style = "text-align: center; padding-bottom: 25px;">Train<br/>Schedule</td> -->
+                        <!-- <td style = "text-align: center; padding-bottom: 25px; text-shadow: 1px 1px 1px #f8eec5; color: #be9902;">Book<br/>Ticket</td> -->
+                        <!-- <td style = "text-align: center; padding-bottom: 25px;">Ticket<br/>Status</td> -->
+                        <td colspan = "6"></td>
+                        <td colspan = "5" id = "NavigationBarTable" style = "text-align: center; padding-bottom: 15px;" onclick = "document.location = 'TrainSchedule.php'">Train<br>Schedule</td>
+                        <td colspan = "6"></td>
+                        <td colspan = "4" id = "NavigationBarTable"  style = "text-align: center; padding-bottom: 15px; text-shadow: 1px 1px 1px #f8eec5; color: #be9902;" onclick = "document.location = 'TicketBooking.php'">Book<br>Ticket</td>
+                        <td colspan = "6"></td>
+                        <td colspan = "4" id = "NavigationBarTable"  style = "text-align: center; padding-bottom: 15px; padding-left: 15px;" onclick = "document.location = 'TicketStatus.php'">Ticket<br>Status</td>
+                        <td colspan = "6"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <table style = "padding: 2%; margin-right: auto; margin-left: auto; width: 90%; text-align: center; border-radius: 25px; background: rgba(255, 255, 255, 0.5); font-family: 'Mystery Quest', cursive;">
+                <tbody>
+                        <tr>
+                            <td style = "font-size: 250%; font-weight: 700; text-shadow: 2px 2px 1px #a78600; color: #FDC901; padding-bottom: 2%;">
+                                Hello, Ms. Maria!
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style = "font-size: 100%; font-weight: 700; text-shadow: 2px 1px 2px #FDC901; color: #bf9902;">
+                                Welcome to my railway reservation system website 'Fantasy Express' where you can find the ride of your dreams!
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style = "font-size: 80%; font-weight: 700; text-shadow: 2px 1px 2px #FDC901; color: #bf9902; text-align: justify;">
+                                <br>As advised, I have made a few assumptions and modified the structure of my database accordingly. In no particular order, they are as follows:
+                                <ul>
+                                    <li>Train Schedule tab allows you to view all records in TrainStatus table.</li>
+                                    <li>Book Ticket tab implements Booking procedure.</li>
+                                    <li>Ticket Status tab allows you to view Ticket Status and has the Cancel Ticket option on it a well.</li>
+                                    <li>Any interface for trains to be added to the TrainStatus table have not been made on the website, but necessary checks to ensure valid records are inserted into TrainStatus table have been added to create table query.</li>
+                                    <li>For checking weekdays available for a train, an integer value composed of numbers 2 to 6 is used along with DAYOFWEEK(date) function. Note that DAYOFWEEK assumes Sunday = 1, NOT Monday = 1.</li>
+                                    <li>Although total number of seats booking in each category is defined as 10, it would not make sense to include them in the table so this constraint is ignored and variable values are allowed for each trainnumber in TrainsList, however they have all been instantiated to 10 for now for the purpose of this constraint.</li>
+                                    <li>The same train may be used to go from a source to a destination and come back from there, so source and destination are kept in TrainStatus table instead of TrainsList table.</li>
+                                    <li>Since source and destination are now in TrainStatus table, each journey is unique and is now identified by an additional column called trainsstatusid in the TrainStatus table which is also used now in the Passengers table.</li>
+                                    <li>If a ticket is cancelled, and there exists a next-in-line waiting ticket for the same journey, if they both have different seat types and the seat type of waiting ticket is already booked to the total capacity of that train, the ticket is not changed to confirmed.</li>
+                                    <li>It is assumed that the description given meant that the total number of tickets in waiting for any train journey must be 2 whether they are for different seat types or the same.</li>
+                                    <li>Since it was not explicitly mentioned, the input values for booking ticket has been taken together as one whole input field, though processing has been done separately.</li>
+                                    <li>No password or check is implemented for each ticket so it can be viewed by anyone as this was not mentioned in the problem description.</li>
+                                    <li>For the same reason, ticket can be cancelled by anyone pressing the button as well</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style = "font-size: 100%; font-weight: 700; text-shadow: 2px 1px 2px #FDC901; color: #bf9902;">
+                                <br>
+                                What are you waiting for?
+                                <br>
+                                <br>
+                                Book your next magical journey with Fantasy Express today!
+                                <br>
+                                <br>
+                                ~ Ashnah Khalid Khan (^_^)
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+    </body>
+</html>
